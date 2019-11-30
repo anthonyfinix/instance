@@ -1,0 +1,41 @@
+<!-- Modal -->
+<div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="createUserLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createUserLabel">Create User</h5>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="createUserForm" >
+                    <input type="email" class="form-control m-1" placeholder="email" formControlName="email">
+                    <input type="text" class="form-control m-1" placeholder="password" formControlName="password">
+                    <button type="submit" class="btn btn-sm btn-outline-secondary m-1" (click)="onCreateUserSubmit()" >Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <h5>Users</h5>
+    <hr>
+    <button class="btn btn-sm d-flex align-items-center" data-toggle="modal" data-target="#createUser"
+        style="background-color: rgb(236, 236, 236);">Create<i class="material-icons">add</i></button>
+    <hr>
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th colspan="2" scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users | async; let i = index">
+                <th scope="row">{{i}}</th>
+                <td>{{user.email}}</td>
+                <td (click)="onDelete(user.uid)"> <i class="material-icons">delete</i> </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

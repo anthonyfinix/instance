@@ -34,17 +34,18 @@ export class AuthenticationService {
   // login user and create doc
   login(username, password){
     return this.afAuth.auth.signInWithEmailAndPassword(username,password)
-    .then((user)=>console.log(user))
+    // .then((user)=>console.log(user))
     .then(()=>{this.router.navigate(['/'])})
     .catch(error=> console.log('login error :'+error))
   }
-  createUser(username, password){
-    return this.afAuth.auth.createUserWithEmailAndPassword(username, password)
-    .then(res=>{ return this.setUserDoc(res.user)})
-    .then((user)=>console.log(user))
-    .then(()=>{this.router.navigate(['/'])})
-    .catch(error=>console.log('user creation error :'+error))
-  }
+
+  // obselect or later usable
+  // createUser(username, password){
+  //   return this.afAuth.auth.createUserWithEmailAndPassword(username, password)
+  //   .then(res=>{ return this.setUserDoc(res.user)})
+  //   .then((user)=>console.log(user))
+  //   .catch(error=>console.log('user creation error :'+error))
+  // }
   // logout
   logout(){
     this.afAuth.auth.signOut();
