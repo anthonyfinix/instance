@@ -1,2 +1,13 @@
-<app-header *ngIf="auth.user$ | async"></app-header>
-<router-outlet></router-outlet>
+<div>
+    <app-header *ngIf="auth.user$ | async"></app-header>
+    <mat-sidenav-container class="main-content-wrapper">
+        <mat-sidenav [mode]="sideBarMode ? 'over' : 'side'" [opened]="headerService.sidebarStatus | async">
+            <mat-list>
+                <mat-list-item class="nav-link" routerLink="/">Dashboard</mat-list-item>
+            </mat-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

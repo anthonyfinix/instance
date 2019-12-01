@@ -1,21 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" *ngIf="auth.user$ | async as user">
-    <div class="container">
-      <a class="navbar-brand" href="#"><h5>{{user.email}}</h5></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<mat-toolbar color="primary" *ngIf="auth.user$ | async as user" fxlayout="row" fxLayoutAlign="space-between center ">
+      <mat-icon (click)='headerService.sidebarToggle()'>menu</mat-icon>
+      <h5 class="main-heading mat-headline">Header</h5>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+            <mat-icon>account_circle</mat-icon>
       </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/profile">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link"  (click)="onLogout()" >logout</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+      <mat-menu #userMenu="matMenu" style="position: absolute;">
+            <mat-list>
+                  <mat-list-item> {{user.email}}</mat-list-item>
+                  <mat-list-item routerLink="/profile">Profile</mat-list-item>
+                  <mat-list-item (click)="this.auth.logout()"> logout </mat-list-item>
+            </mat-list>
+      </mat-menu>
+</mat-toolbar>
