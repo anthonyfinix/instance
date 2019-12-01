@@ -1,1 +1,15 @@
-<p>profile works!</p>
+<div class="container my-5">
+    <h5>Profile</h5>
+    <table class="table table-hover" *ngIf="auth.user$ | async as user">
+        <thead>
+            <tr>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{user.email}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
