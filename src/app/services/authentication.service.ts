@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth'
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
+import { GlobalErrorHandlerService } from './error-handler.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +13,21 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
 
   user$: Observable<User>;
+  progressBar = new Subject();
 
   constructor(
 
     private afs: AngularFirestore,
     private afAuth: AngularFireAuth,
     private router: Router,
+    private GlobalErrorHandler: GlobalErrorHandlerService
 
   ) {
     this.user$ = afAuth.authState.pipe(
-      switchMap(user=>{
+      switchMap(user => {
         if (user) {
-            return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
-        }else{
+          return this.afs.doc<User>(`users/${user.uid}`).valueChanges()
+        } else {
           this.router.navigate(['/login']);
           return of(null);
         }
@@ -32,11 +35,18 @@ export class AuthenticationService {
     )
   }
   // login user and create doc
-  login(username, password){
-    return this.afAuth.auth.signInWithEmailAndPassword(username,password)
-    // .then((user)=>console.log(user))
-    .then(()=>{this.router.navigate(['/'])})
-    .catch(error=> console.log('login error :'+error))
+  login(username, password) {
+    return this.afAuth.auth.signInWithEmailAndPassword(username, password)
+      .then((user) => {
+        console.log(user)
+      })
+      .then(() => { this.router.navigate(['/']) })
+      .catch(error => {
+        this.GlobalErrorHandler.handleError(error)
+      })
+      .finally(() => {
+        this.progressBar.next(false)
+      })
   }
 
   // obselect or later usable
@@ -47,25 +57,13 @@ export class AuthenticationService {
   //   .catch(error=>console.log('user creation error :'+error))
   // }
   // logout
-  logout(){
+  
+  logout() {
     this.afAuth.auth.signOut();
   }
 
-  // set user data
-  setUserDoc(user){
-    const data: User = {
-      uid: user.uid,
-      email: user.email || null,
-      photoURL: 'https://goo.gl/Fz9nrQ'
-    }
-    console.log(data);
-    const userRef: AngularFirestoreDocument<User> = this.afs.doc<User>(`users/${user.uid}`); 
-
-    return userRef.set(data)
-  }
-
   // Update properties on the user document
-  updateUser(user: User, data: any) { 
+  updateUser(user: User, data: any) {
     return this.afs.doc(`users/${user.uid}`).update(data)
   }
 

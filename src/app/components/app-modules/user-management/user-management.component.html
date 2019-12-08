@@ -1,25 +1,6 @@
-<!-- Modal -->
-<div class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-labelledby="createUserLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createUserLabel">Create User</h5>
-            </div>
-            <div class="modal-body">
-                <form [formGroup]="createUserForm" >
-                    <input type="email" class="form-control m-1" placeholder="email" formControlName="email">
-                    <input type="text" class="form-control m-1" placeholder="password" formControlName="password">
-                    <button type="submit" class="btn btn-sm btn-outline-secondary m-1" (click)="onCreateUserSubmit()" >Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container my-5">
+<div style="margin: 50px">
     <h1 class="mat-headline">Users</h1>
-    <button  mat-flat-button color="primary">Create New user</button>
+    <button  mat-flat-button color="primary" (click)="openDialog()">Create New user</button>
     <hr>
     <mat-list>
         <mat-list-item *ngFor="let user of users | async; let i = index"(click)="onDelete(user.uid)">{{i}}{{user.email}}<i class="material-icons">delete</i> </mat-list-item>

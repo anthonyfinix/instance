@@ -12,8 +12,8 @@ const routes: Routes = [
   {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'userManagement', component: UserManagementComponent},
-  {path: 'instanceManagement', component: InstanceManagementComponent},
+  {path: 'userManagement', component: UserManagementComponent, canActivate: [AuthGuard]},
+  {path: 'instanceManagement', component: InstanceManagementComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
