@@ -15,10 +15,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { LoginComponent } from './components/user/login/login.component';
-import { UserManagementComponent, DialogOverviewExampleDialog } from './components/app-modules/user-management/user-management.component';
-import { InstanceManagementComponent } from './components/app-modules/instance-management/instance-management.component';
+import { InstanceComponent } from './components/instance/instance.component';
+import { classComponent } from './components/class/class.component';
 
 import { GlobalErrorHandlerService } from './services/error-handler.service';
+import { Dialog } from './components/dialogues/dialogues.component';
 
 
 @NgModule({
@@ -28,11 +29,11 @@ import { GlobalErrorHandlerService } from './services/error-handler.service';
     DashboardComponent,
     ProfileComponent,
     LoginComponent,
-    UserManagementComponent,
-    InstanceManagementComponent,
-    DialogOverviewExampleDialog
+    InstanceComponent,
+    classComponent,
+    Dialog
   ],
-  entryComponents: [DialogOverviewExampleDialog],
+  entryComponents: [Dialog],
   imports: [
     BrowserModule,
     AppRoutingModule,

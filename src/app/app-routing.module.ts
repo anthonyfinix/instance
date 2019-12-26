@@ -4,16 +4,16 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/user/profile/profile.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import { UserManagementComponent } from './components/app-modules/user-management/user-management.component';
-import { InstanceManagementComponent } from './components/app-modules/instance-management/instance-management.component';
+import { classComponent } from './components/class/class.component';
+import { InstanceComponent } from './components/instance/instance.component';
 
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'userManagement', component: UserManagementComponent, canActivate: [AuthGuard]},
-  {path: 'instanceManagement', component: InstanceManagementComponent, canActivate: [AuthGuard]},
+  {path: 'class', component: classComponent, canActivate: [AuthGuard]},
+  {path: 'instance', component: InstanceComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

@@ -1,0 +1,63 @@
+<div style="margin: 50px">
+  <div fxlayout="column" fxLayoutAlign="space-between center" class="header-bar">
+
+    <h1 class="mat-headline">Instances</h1>
+  </div>
+  <mat-card>
+    <mat-toolbar fxLayoutAlign="start center">
+        <mat-icon>search</mat-icon>
+        <mat-form-field fxFlex="" class="member-searchbar">
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        </mat-form-field>
+      <button mat-flat-button color="primary" (click)="openDialog()">Create New</button>
+    </mat-toolbar>
+    <mat-card-content>
+      <table mat-table matSort [dataSource]="dataSource">
+        <!-- Select Column -->
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="displayName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.displayName}} </td>
+        </ng-container>
+        <!-- email Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+        <!-- Delete Column -->
+        <ng-container matColumnDef="actions" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let element">
+            <button mat-icon-button [matMenuTriggerFor]="options">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #options="matMenu" style="position: absolute;">
+              <mat-list>
+                <mat-list-item (click)="onDelete(element.uid)"> Delete</mat-list-item>
+              </mat-list>
+            </mat-menu>
+            <div>
+
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

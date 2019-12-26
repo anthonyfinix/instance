@@ -13,7 +13,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
     ) { }
 
     handleError(error) {
-        console.error('An error occurred:', error.message);
+        console.error('An error occurred:', error);
         let snackBarRef = this.snackBar.open(error,'close',{duration: 3000} );
     }
 

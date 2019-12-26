@@ -11,7 +11,7 @@ export class MainHeaderService {
     sidebarStatus = new Subject;
     sideBarState: boolean = false;
 
-    constructor() { }
+    constructor() {}
     sidebarToggle() {
         this.sideBarState = !this.sideBarState;
         this.sidebarStatus.next(this.sideBarState);

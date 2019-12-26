@@ -1,8 +1,0 @@
-<div style="margin: 50px">
-    <h1 class="mat-headline">Users</h1>
-    <button  mat-flat-button color="primary" (click)="openDialog()">Create New user</button>
-    <hr>
-    <mat-list>
-        <mat-list-item *ngFor="let user of users | async; let i = index"(click)="onDelete(user.uid)">{{i}}{{user.email}}<i class="material-icons">delete</i> </mat-list-item>
-  </mat-list>
-</div>
