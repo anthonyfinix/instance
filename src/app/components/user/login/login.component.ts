@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginFormGroup: FormGroup;
 
   constructor(
-    private auth: AuthenticationService,
+    public auth: AuthenticationService,
     private router: Router
   ) {
     this.loginFormGroup = new FormGroup({

@@ -10,8 +10,8 @@ import { MainHeaderService } from './header.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private auth: AuthenticationService,
-    private headerService: MainHeaderService,
+    public auth: AuthenticationService,
+    public headerService: MainHeaderService,
   ) { }
 
   ngOnInit() {
