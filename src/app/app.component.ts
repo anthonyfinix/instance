@@ -14,8 +14,13 @@ export class AppComponent {
     public headerService: MainHeaderService,
     private bpObs: BreakpointObserver,
   ){
-    bpObs.observe([Breakpoints.Handset]).subscribe(result=>this.sideBarMode = result.matches);
-    this.headerService.sidebarToggle()
+    this.headerService.sidebarToggle();
+    bpObs.observe([Breakpoints.Handset]).subscribe(result=>{
+      if (result.matches) {
+        this.headerService.sideBarState = false;
+      }
+      return this.sideBarMode = result.matches
+    });
   }
 
 

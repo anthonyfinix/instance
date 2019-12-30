@@ -3,4 +3,5 @@ export class User {
     displayName: string
     photoURL: string;
     uid: string;
+    password?: string;
 }
