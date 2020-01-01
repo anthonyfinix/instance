@@ -1,13 +1,10 @@
-<div>
-    <app-header *ngIf="auth.user$ | async"></app-header>
-    <mat-sidenav-container class="main-content-wrapper">
-        <mat-sidenav class="sidebar" [mode]="sideBarMode ? 'over' : 'side'" [opened]="headerService.sideBarState">
-            <mat-list>
-                <mat-list-item class="nav-link" routerLink="/">Dashboard</mat-list-item>
-            </mat-list>
-        </mat-sidenav>
-        <mat-sidenav-content class="main-content">
-            <router-outlet></router-outlet>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
+<div *ngIf="userService.user$ | async as user; else showLogin">
+    <h1>Hello {{ user.uid }} !</h1>
+    <button (click)="userService.logout()">Logout</button>
 </div>
+<ng-template #showLogin>
+    <p>Please login.</p>
+    <button (click)="userService.login()">Login with Google</button>
+</ng-template>
+
+<router-outlet></router-outlet>

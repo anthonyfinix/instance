@@ -1,16 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutingModule } from './routes/app-routing.module';
 
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { AngularFireModules } from './modules/angular-fire.module';
 import { MaterialModule } from './modules/material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout'
-import { AppRoutingModule } from './app-routing.module';
+
+import { userModule } from './modules/user.module';
 
 import { AppComponent } from './app.component';
+// import { GlobalErrorHandler } from './shared/global-error-handler.service';
 
 
 @NgModule({
@@ -21,14 +23,13 @@ import { AppComponent } from './app.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    AngularFireModules,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     FlexLayoutModule,
+    AngularFireModules,
+    userModule
   ],
-  providers: [{ provide: ErrorHandler}],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
