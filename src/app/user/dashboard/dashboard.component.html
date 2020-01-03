@@ -1,1 +1,3 @@
-dashboard works
+<div class="main-container">
+    <h1 *ngIf="userService.user$ | async; let user">Welcome {{ user.displayName }}</h1>
+</div>

@@ -1,0 +1,13 @@
+<mat-toolbar>
+    <button mat-icon-button aria-label="sidebar" style="margin-right: 15px;">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <img src="./assets/logo.svg" width="80px" alt="">
+    <button id="account" [matMenuTriggerFor]="profile" mat-icon-button aria-label="Dashboard">
+        <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #profile="matMenu">
+        <button [routerLink]="['/profile']" mat-menu-item>Profile</button>
+        <button (click)="userService.logout()" mat-menu-item>Logout</button>
+    </mat-menu>
+</mat-toolbar>

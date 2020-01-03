@@ -14,11 +14,6 @@ export class LoginGuard implements CanActivate {
         return this.auth.user$.pipe(
             take(1),
             map(user=>!!user),
-            tap(isloggedIn=>{
-                if (!isloggedIn) {
-                    this.router.navigate(['/login'])
-                }
-            })
         )
     }
 }

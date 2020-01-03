@@ -12,15 +12,15 @@ import { Router } from '@angular/router';
 
 export class UserService {
 
-    user$: Observable<User | null>
-
+    user$: Observable<User | null>;
+    
     constructor(
         private afAuth: AngularFireAuth,
         private afs: AngularFirestore,
-    ) {
-        this.user$ = this.afAuth.authState.pipe(
-            switchMap(user => {
-                if (user) {
+        ) {
+            this.user$ = this.afAuth.authState.pipe(
+                switchMap(user => {
+                    if (user) {
                     return afs.doc<User>(`/users/${user.uid}`).valueChanges();
                 } else {
                     return of(null);
@@ -29,11 +29,12 @@ export class UserService {
         )
     }
 
-    login() {
-        this.afAuth.auth.signInWithEmailAndPassword('anthonyfinix@gmail.com', 'asp97JC987')
+    login(email,password) {
+            return this.afAuth.auth.signInWithEmailAndPassword(email, password)
+        
     }
     logout() {
-        this.afAuth.auth.signOut()
+        this.afAuth.auth.signOut();
     }
 
 

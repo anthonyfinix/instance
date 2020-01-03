@@ -1,23 +1,38 @@
-import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: 'login.component.html'
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
+export class LoginComponent implements OnInit {
 
-export class LoginComponent{
-    constructor(
-        private afAuth: AngularFireAuth,
-        private router: Router
-    ){
-        this.afAuth.authState.subscribe(user=>{
-            if (user) {
-                router.navigate(['/'])
-            }
-        }).unsubscribe()
-    }
+
+
+  loading:Boolean = false;
+  
+  loginForm = new FormGroup({
+    "email": new FormControl('', Validators.email),
+    "password": new FormControl('', Validators.required),
+  })
+
+  constructor(
+    private userService: UserService
+  ) { }
+
+  ngOnInit() {
+  }
+
+  
+  onLogin(){
+    this.loading = true;
+    this.userService.login(this.loginForm.get('email').value,this.loginForm.get('password').value).finally(()=>{
+        this.loading = false;
+    }).catch(error=>{
+      console.log(error);
+    });
+  }
 
 }

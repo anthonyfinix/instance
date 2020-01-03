@@ -1,1 +1,18 @@
-login works
+<div id="login-wrapper" fxLayout="column" fxLayoutAlign="center">
+    <mat-card fxLayout="column" fxLayoutAlign="center center" class="login-dialogue">
+    <mat-progress-bar *ngIf="loading" mode="query"></mat-progress-bar>
+        <img id="logo" src="./assets/logo.svg" alt="">
+        <p class="caption">Login with your credentials</p>
+        <form id="login-form" fxLayout="column" fxLayoutAlign="center stretch" [formGroup]="loginForm">
+            <mat-form-field class="mat-input-cover" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input autocomplete="off" matInput formControlName="email" type="email" placeholder="Email">
+            </mat-form-field>
+            <mat-form-field class="mat-input-cover" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input autocomplete="off" matInput formControlName="password" type="password" placeholder="Password">
+            </mat-form-field>
+            <button fxFlexAlign="start" mat-button mat-flat-button color="primary" (click)="onLogin()">login</button>
+        </form>
+    </mat-card>
+</div>

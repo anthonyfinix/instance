@@ -1,0 +1,33 @@
+#login-wrapper{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(240, 240, 240);
+}
+#logo{
+    width: 100px;
+    margin-top: 40px;
+}
+.caption{
+    margin-bottom: 50px;
+    text-align: center;
+}
+.login-dialogue{
+    max-width: 500px;
+    min-height: 416px;
+    margin: auto;
+    padding: 0px;
+}
+
+#login-form{
+    width: 100%;
+    margin: 0px  40px;
+    padding: 0px 40px 40px 40px;
+}
+
+.login-form .mat-input-cover input{
+    width: 100%;
+}
+
+.login-form .mat-input-cover{
+    width: 100%;
+}
