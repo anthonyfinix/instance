@@ -7,12 +7,20 @@ import { AngularFireModules } from './modules/angular-fire.module';
 import { MaterialModule } from './modules/material.module'
 import { userModule } from './modules/user.module';
 import { AppComponent } from './app.component';
-// import { GlobalErrorHandler } from './core/services/global-error-handler.service';
+import { DashboardComponent } from './core/components/dashboard/dashboard.component';
+import { HeaderComponent } from './core/components/header/header.component';
+import { SidebarComponent } from './core/components/sidebar/sidebar.component';
+import { OverviewComponent } from './core/components/overview/overview.component';
+import { GlobalErrorHandler } from './core/services/global-error-handler.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
+    DashboardComponent,
+    SidebarComponent,
+    OverviewComponent
   ],
   imports: [
     userModule,
@@ -23,7 +31,7 @@ import { AppComponent } from './app.component';
     AngularFireModules,
     MaterialModule,
   ],
-  providers: [],
+  providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { Router } from '@angular/router';
+import { GlobalErrorHandler } from 'src/app/core/services/global-error-handler.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authSer: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private errHandle: GlobalErrorHandler
   ) {
     if (this.authSer) {
       this.router.navigate(['/'])
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
       this.loading = false;
         this.router.navigate(['/'])
     }).catch(error=>{
-      console.log(error);
+      this.errHandle.handleError(error);
     });
   }
 
