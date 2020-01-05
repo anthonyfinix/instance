@@ -8,6 +8,6 @@
     </button>
     <mat-menu #profile="matMenu">
         <button [routerLink]="['/profile']" mat-menu-item>Profile</button>
-        <button (click)="userService.logout()" mat-menu-item>Logout</button>
+        <button (click)="authService.logout()" mat-menu-item>Logout</button>
     </mat-menu>
 </mat-toolbar>

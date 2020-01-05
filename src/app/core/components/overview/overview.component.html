@@ -1,0 +1,3 @@
+<div class="main-container">
+    <h1 *ngIf="authService.user$ | async; let user">Welcome {{ user.displayName }}</h1>
+</div>

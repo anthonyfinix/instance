@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { UserService } from '../services/user.service';
+import { AuthenticationService } from '../../core/services/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
   })
 
   constructor(
-    private usrSer: UserService,
+    private authSer: AuthenticationService,
     private router: Router
   ) {
-    if (this.usrSer) {
+    if (this.authSer) {
       this.router.navigate(['/'])
     }
   }
@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   
   onLogin(){
     this.loading = true;
-    this.usrSer.login(this.loginForm.get('email').value,this.loginForm.get('password').value).finally(()=>{
+    this.authSer.login(this.loginForm.get('email').value,this.loginForm.get('password').value).finally(()=>{
       this.loading = false;
         this.router.navigate(['/'])
     }).catch(error=>{

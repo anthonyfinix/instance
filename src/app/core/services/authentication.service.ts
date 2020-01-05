@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 
 
-export class UserService {
+export class AuthenticationService {
 
     user$: Observable<User | null>;
     
