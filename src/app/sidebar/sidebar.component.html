@@ -1,0 +1,3 @@
+<mat-list>
+    <mat-list-item *ngFor="let class of classes | async"> <a [routerLink]="['/class',class.payload.doc.id]" routerLinkActive="active"> {{class.payload.doc.id}} </a></mat-list-item>
+</mat-list>

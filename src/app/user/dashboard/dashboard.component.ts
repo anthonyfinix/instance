@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { HeaderService } from 'src/app/header/header.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -10,7 +11,8 @@ import { UserService } from '../services/user.service';
 export class DashboardComponent{
 
     constructor(
-        private userService: UserService
+        private userService: UserService,
+    public headerService: HeaderService
     ){}
 
 }
