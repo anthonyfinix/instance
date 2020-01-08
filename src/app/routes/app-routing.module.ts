@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       { path: 'overview', component: OverviewComponent,  canActivate: [LoginGuard],},
       { path: 'profile', component: ProfileComponent,  canActivate: [LoginGuard],},
-      { path: 'class/:id', component: ClassesComponent, canActivate: [LoginGuard],}
+      { path: 'class/:class', component: ClassesComponent, canActivate: [LoginGuard],}
     ]
   },
   { path: 'login', component: LoginComponent },

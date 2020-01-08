@@ -12,6 +12,7 @@ import { HeaderComponent } from './core/components/header/header.component';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component';
 import { OverviewComponent } from './core/components/overview/overview.component';
 import { GlobalErrorHandler } from './core/services/global-error-handler.service';
+import {LayoutModule} from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { GlobalErrorHandler } from './core/services/global-error-handler.service
     FlexLayoutModule,
     AngularFireModules,
     MaterialModule,
+    LayoutModule
   ],
   providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
   bootstrap: [AppComponent]
