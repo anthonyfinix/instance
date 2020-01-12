@@ -23,7 +23,7 @@ export class DashboardComponent implements OnDestroy {
         public layout:LayoutService
     ) {
         this.deviceState = this.layout.device.subscribe(state=>{
-            if (state.breakpoints[Breakpoints.Small]) {
+            if (state.breakpoints[Breakpoints.XSmall]) {
                 this.sidebarMode = 'over'
             } else{
                 this.sidebarMode = 'side'

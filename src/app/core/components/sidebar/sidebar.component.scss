@@ -1,3 +1,13 @@
-.active{
+// .active{
+//     font-weight: bold;
+// }
+.mat-list-item h4{
+    font-weight: 400;
+    color: rgb(70, 70, 70);
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.mat-list-item .active{
     font-weight: bold;
+    color: black;
 }

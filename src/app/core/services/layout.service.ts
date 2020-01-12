@@ -9,6 +9,7 @@ export class LayoutService{
     constructor(breakpointObserver: BreakpointObserver) {
         this.device = breakpointObserver.observe([
             Breakpoints.Small,
+            Breakpoints.XSmall,
             Breakpoints.HandsetLandscape,
             Breakpoints.HandsetPortrait
         ])

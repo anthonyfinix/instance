@@ -1,18 +1,18 @@
+// core modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './routes/app-routing.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { AngularFireModules } from './modules/angular-fire.module';
-import { MaterialModule } from './modules/material.module'
+// additional imports
+import { GlobalErrorHandler } from './core/services/global-error-handler.service';
+// custom modules
 import { userModule } from './modules/user.module';
+import { SharedModule } from './modules/shared.module';
+// core custom components
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './core/components/dashboard/dashboard.component';
 import { HeaderComponent } from './core/components/header/header.component';
 import { SidebarComponent } from './core/components/sidebar/sidebar.component';
 import { OverviewComponent } from './core/components/overview/overview.component';
-import { GlobalErrorHandler } from './core/services/global-error-handler.service';
-import {LayoutModule} from '@angular/cdk/layout';
 
 
 @NgModule({
@@ -21,19 +21,15 @@ import {LayoutModule} from '@angular/cdk/layout';
     HeaderComponent,
     DashboardComponent,
     SidebarComponent,
-    OverviewComponent
+    OverviewComponent,
   ],
   imports: [
     userModule,
+    SharedModule,
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
-    AngularFireModules,
-    MaterialModule,
-    LayoutModule
   ],
   providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

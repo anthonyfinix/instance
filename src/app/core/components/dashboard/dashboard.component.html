@@ -1,7 +1,7 @@
 <div>
-    <app-header></app-header>
+    <app-header (sideNavToggle)="sidenav.toggle()" ></app-header>
     <mat-sidenav-container id="main-content-wrapper">
-        <mat-sidenav class="main-sidenav" [(mode)]="sidebarMode" [opened]='headerService.sideBarOpened | async'>
+        <mat-sidenav #sidenav role="navigation" class="main-sidenav" opened="true" [(mode)]="sidebarMode">
             <app-sidebar></app-sidebar>
         </mat-sidenav>
         <mat-sidenav-content class="main-content">
