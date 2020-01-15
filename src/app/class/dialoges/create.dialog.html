@@ -1,0 +1,12 @@
+<div class="dialog-cover">
+    <h4>Create Instance</h4>
+    <div fxLayout="column" fxLayoutAlign="center" [formGroup]="createForm">
+        <mat-form-field *ngFor="let name of controlName">
+            <input matInput formControlName="{{name}}" placeholder="{{name}}">
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <button mat-button mat-flat-button (click)="cancel()" color="primary">Cancel</button>
+            <button mat-button mat-flat-button color="primary" [mat-dialog-close]="createForm">Create</button>
+        </div>
+    </div>
+</div>

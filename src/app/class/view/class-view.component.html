@@ -2,7 +2,7 @@
 <p>Some Discription</p>
 
 <mat-toolbar>
-  <button mat-button mat-flat-button > Create New </button>
+  <button (click)="createNewInstance()" mat-button mat-flat-button > Create New </button>
 </mat-toolbar>
 
 <table mat-table [dataSource]="dataSource">
