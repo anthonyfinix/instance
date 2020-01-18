@@ -1,6 +1,6 @@
 <mat-list>
     <mat-list-item *ngFor="let class of classes | async">
         <mat-icon mat-list-icon>folder</mat-icon>
-        <h4 [routerLink]="['/class',class.name]" [state]="{classData: 'test'}" routerLinkActive="active">{{class.title}} </h4>
+        <h4 [routerLink]="['/class',class.name]" routerLinkActive="active">{{class.title}} </h4>
     </mat-list-item>
 </mat-list>

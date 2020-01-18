@@ -75,8 +75,24 @@ export class ClassViewComponent implements OnInit, OnDestroy {
             console.log(data)
           })
         }
+        this.createDoc(result)
       });
     })
+  }
+
+  createDoc(instance){
+    this.afs.doc(`/classes/users`).valueChanges().subscribe(data=>{
+      const docData = {}
+      Object.keys(data.schema).forEach(item=>{
+        docData[item] = instance.value[item];
+      })
+      console.log(docData)
+      if (this.title == 'users') {
+          this.afs.doc(`/${this.title}/${docData.uid}`).set(docData);
+        }else{
+          this.afs.doc(`/${this.title}/${docData.name}`).set(docData);
+      }
+    })  
   }
   
   ngOnDestroy() {
