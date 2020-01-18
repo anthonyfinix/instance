@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateInstanceDialog } from '../dialoges/create.dialog';
+import { AngularFireFunctions } from '@angular/fire/functions';
 
 export interface Classes{
   count?: number,
@@ -28,11 +29,13 @@ export class ClassViewComponent implements OnInit, OnDestroy {
   paramSub: Subscription;
   collectionSub: Subscription;
   newInstanceSub: Subscription;
+  newUserSub: Subscription;
 
   constructor(
     private actRoute: ActivatedRoute,
     private afs: AngularFirestore,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private fns: AngularFireFunctions
   ) {
     this.displayedColumns = [];
     this.ELEMENT_DATA = [];
@@ -65,7 +68,13 @@ export class ClassViewComponent implements OnInit, OnDestroy {
       // console.log(data.schema);
       const dialogRef = this.dialog.open(CreateInstanceDialog,{width: '250px',data: instance.schema})
       dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
+        
+        const createUser = this.fns.httpsCallable('createUser');
+        if (this.title == 'users') {
+          this.newUserSub = createUser({email: result.email,password: result.password, displayName: result.displayName}).subscribe(data=>{
+            console.log(data)
+          })
+        }
       });
     })
   }
@@ -74,5 +83,6 @@ export class ClassViewComponent implements OnInit, OnDestroy {
     this.paramSub.unsubscribe()
     this.collectionSub.unsubscribe()
     this.newInstanceSub.unsubscribe()
+    this.newUserSub.unsubscribe()
   }
 }

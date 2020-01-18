@@ -18,7 +18,6 @@ export class HeaderComponent implements OnInit {
     ) { }
 
     public toggleSideNavbar = () => {
-        console.log('test');
         this.sideNavToggle.emit(null);
     }
     ngOnInit() {

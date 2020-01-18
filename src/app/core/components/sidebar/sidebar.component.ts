@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class SidebarComponent implements OnInit {
 
   classes: Observable<any[]>
+  title: Observable<any[]>;
 
   constructor(
     private afs: AngularFirestore,
@@ -19,7 +20,7 @@ export class SidebarComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.classes = this.afs.collection(`/classes`).snapshotChanges();
+    this.classes = this.afs.collection(`/classes`).valueChanges();
   }
 
 }
